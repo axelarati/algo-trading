@@ -9,8 +9,8 @@ from datetime import datetime, timedelta, timezone
 
 
 strategy_type_map = {
-    #'rsi' : RSI,
-    'sma' : SMACrossover
+    'sma' : SMA,
+    'sma_cross' : SMACrossover
 }
 
 def main(config_file_name, preview, port, strategy_id):
@@ -35,7 +35,7 @@ def main(config_file_name, preview, port, strategy_id):
         strategies.append((strategy,strategy_config))
 
     start = datetime(2018,1,1).replace(tzinfo = timezone.utc) # utc time IMPORTANT
-    end = datetime.utcnow().replace(tzinfo = timezone.utc)#start_datetime+timedelta(weeks=145)
+    end = datetime.utcnow().replace(tzinfo = timezone.utc)
 
     # compute and combine weights for all strategies
     tot_weights = pd.DataFrame([np.zeros(len(symbols))],columns=symbols)
@@ -65,7 +65,6 @@ def main(config_file_name, preview, port, strategy_id):
 
         print(signal)
         if not preview:
-            #print('sending signal')
             r = requests.post('http://localhost:{}/api/strategies/{}?signal={}'.format(port, strategy_id,signal))
             #print(r.text)
 

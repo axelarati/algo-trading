@@ -140,6 +140,24 @@ class Strategy:
     def _compute_weights(self):
         pass
 
+class SMA(Strategy):
+
+    def __init__(self,symbols, historical_data_fetchers, params):
+        super().__init__(symbols, historical_data_fetchers, 'sma_{}'.format(params['sma']))
+
+        self.sma = 'close_{}_sma'.format(params['sma'])
+
+        self.INDICATORS = [self.sma]
+
+    def get_indicators(self):
+        return self.INDICATORS
+
+    def _compute_weights(self):
+        w = np.where(self.close_prices > self.indicator_vals[self.sma], 1, 0)
+        w = pd.DataFrame(w,columns=self.symbols).fillna(method='ffill').fillna(0)
+        w.index = self.close_prices.index
+
+        return w
 
 class SMACrossover(Strategy):
 

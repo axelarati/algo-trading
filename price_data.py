@@ -10,13 +10,11 @@ from binance.client import Client
 
 import json
 
-import portion as I
-
 
 DATA_COLS = ['open','high','low','close','volume']
 KLINE_COLS = ['date'] + DATA_COLS
 
-# returns df with timestamp integers (ms)
+# returns df of most recent prices with timestamp integers (ms)
 def get_prices(client, ticker, interval):
     ohlcv = client.get_klines(symbol=ticker, interval=interval)
     
