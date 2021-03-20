@@ -1,0 +1,2 @@
+@CALL "C:\<path_to_anaconda>\anaconda3\Scripts\activate.bat" base
+python "C:\<path_to_repo>\algo-trading\run_strategy.py" --config "C:\<path_to_repo>\algo-trading\strategy_config.json" --strategy_id <id> --port <port>  >> "C:\<path_to_repo>\algo-trading\strategy_log.txt"

@@ -1,0 +1,12 @@
+[
+ {
+  "type" : "sma",
+  "weight" : 1,
+  "freq" : "1d",
+  "symbols" : ["BTCUSDT", "ETHUSDT", "XRPUSDT", "BNBUSDT"],
+  "args":{
+	"slow_sma": 8,
+	"fast_sma": 5
+  }
+ }
+]
