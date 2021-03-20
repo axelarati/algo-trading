@@ -61,7 +61,7 @@ def main(config_file_name, preview, port, strategy_id):
     for symbol in symbols:
         weight = round(tot_weights[symbol]*100,2)[0]
 
-        signal = 'LONG {} {} %PORTFOLIO'.format(symbol[:-4], weight) # do the protected market orders in APM
+        signal = 'LONG {} {} %PORTFOLIO'.format(symbol[:-4], weight)
 
         print(signal)
         if not preview:
